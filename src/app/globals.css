@@ -1,26 +1,313 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand - soft fresh green, matched to the logo's gradient */
+  --color-brand: #3bb273; /* primary fills: buttons, bands, pills */
+  --color-brand-dark: #2a9459; /* fill hover / pressed */
+  --color-brand-ink: #046b4e; /* brand-coloured TEXT + borders on light bg */
+  --color-brand-deep: #01312c; /* dark sections, text on brand fills */
+  --color-brand-soft: #e4f6ee; /* light tint tiles */
+  --color-accent: #7fd9af; /* bright text on dark backgrounds */
+
+  /* Neutrals - cool green-tinted */
+  --color-ink: #1b2127;
+  --color-body: #5a646b;
+  --color-line: #e4e8e7;
+  --color-soft: #f4f8f7;
+
+  /* Typography */
+  --font-sans:
+    var(--font-open-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-heading:
+    var(--font-dm-sans), var(--font-open-sans), ui-sans-serif, system-ui,
+    sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --brand: #3bb273;
+  --brand-ink: #046b4e;
+  --brand-dark: #2a9459;
+  --accent: #7fd9af;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #1b2127;
+  background: #ffffff;
+  font-family:
+    var(--font-open-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container-x {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .container-x {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Section heading */
+.sec-head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.sec-head h2 {
+  font-family: var(--font-dm-sans), var(--font-open-sans), sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  color: #1b2127;
+  margin: 0;
+  text-transform: capitalize;
+  letter-spacing: -0.01em;
+}
+.sec-head p {
+  color: #5a646b;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.sec-head .bar {
+  width: 44px;
+  height: 2px;
+  background: var(--brand-ink);
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+/* Rich content from cloned pages */
+.rich-content {
+  color: #5a646b;
+  font-size: 15px;
+  line-height: 1.9;
+}
+.rich-content p {
+  margin: 0 0 12px;
+}
+.rich-content strong {
+  color: #1b2127;
+}
+.rich-content a {
+  color: #046b4e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.rich-content img {
+  max-width: 100%;
+  height: auto;
+}
+.rich-content ul,
+.rich-content ol {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+.rich-content li {
+  margin-bottom: 6px;
+}
+.rich-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+.rich-content table th,
+.rich-content table td {
+  border: 1px solid #e4e8e7;
+  padding: 8px 12px;
+  text-align: left;
+}
+.rich-content table th {
+  background: #f4f8f7;
+  color: #1b2127;
+  font-weight: 600;
+}
+
+/* Product card hover accent */
+.product-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: var(--brand-ink);
+  border-radius: 16px 16px 0 0;
+  transition: height 0.25s ease;
+}
+.product-card:hover::after {
+  height: 3px;
+}
+
+/* Footer gradient - deep green (#01312C) -> brand green (#3BB273)
+   A dark scrim runs left-to-right so footer text stays legible
+   while the green stays visible on the right. */
+.footer-gradient {
+  background-color: #01312c;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(1, 49, 44, 0.94) 0%,
+      rgba(1, 49, 44, 0.86) 50%,
+      rgba(1, 49, 44, 0.58) 100%
+    ),
+    linear-gradient(135deg, #01312c 0%, #17553a 42%, #3bb273 100%);
+}
+
+.footer-strip {
+  background-color: #01312c;
+  background-image: linear-gradient(90deg, #01312c 0%, #103b2b 55%, #1a5b40 100%);
+}
+
+/* hide scrollbar for thumb strip */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ---------- HERO ARTWORK ----------
+   When the page opens the line draws itself from one end to the other, the
+   two nodes light up once it lands, and the product-family chips pop in one
+   after another.
+
+   The line is plain white rather than the brand accent. The green glows behind
+   it lift the background from #01312c to roughly rgb(13,75,58): a #7fd9af
+   stroke drops to about 6:1 there and reads as almost nothing at a distance,
+   so white is used for the focus line and the accent is kept for the dimmer
+   rings and nodes. Keyframes are prefixed so they cannot collide with anything
+   else in the bundle. */
+/* ---------- MASK ARTWORK ----------
+   The hero illustration comes from public/mask.svg, which is a solid black
+   drawing. To animate it, each of its 30 paths is re-used as an outline.
+
+   The artwork is wrapped in a scale(0.1) group inside a 512-unit viewBox, so
+   stroke widths are set in the artwork's own user units: 22 renders at roughly
+   2px, because the group scale (0.1) and the viewBox fit (~0.92) multiply down
+   to about 0.092.
+
+   `stroke-dasharray` and `stroke-dashoffset` are supplied per path from
+   src/lib/hero-mask.ts, which measures each contour's real length. Using one
+   shared value would need to match the longest contour (31 880 units) and would
+   leave the twenty-five small details finishing almost instantly. Delays and
+   durations are also set inline per path.
+
+   The line is plain white rather than the brand accent. The green glows behind
+   it lift the background from #01312c to roughly rgb(13,75,58): a #7fd9af
+   stroke drops to about 6:1 there and reads as almost nothing at a distance,
+   so white is used for the primary contours and the accent is kept for the
+   dimmer details and rings. Keyframes are prefixed so they cannot collide with
+   anything else in the bundle. */
+.hero-mask-major,
+.hero-mask-fine {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation-name: hero-draw-wire;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.hero-mask-major {
+  stroke: #ffffff;
+  stroke-width: 22;
+  filter: drop-shadow(0 0 5px rgba(127, 217, 175, 0.55));
+}
+
+.hero-mask-fine {
+  stroke: #7fd9af;
+  stroke-width: 15;
+  stroke-opacity: 0.75;
+}
+
+/* The surrounding rings stay dim; they are structure, not the focus. */
+/* The surrounding rings and accent dot have been removed so only the mask draws. */
+
+.hero-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  animation: hero-chip-in 0.6s ease forwards;
+}
+
+@keyframes hero-draw-wire {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hero-fade-dot {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Below lg the artwork column is narrow, so the nowrap chips would otherwise
+   spill out over the copy beside them. */
+@media (max-width: 1023px) {
+  .hero-chip {
+    gap: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mask-major,
+  .hero-mask-fine {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .hero-chip {
+    animation: none;
+    opacity: 1;
+  }
 }

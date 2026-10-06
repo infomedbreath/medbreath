@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MedBreath — Website
 
-## Getting Started
+A Next.js clone of the Hitec Medical website, rebranded to **MedBreath**. Pages, content,
+products, images and layout match the source site; only the brand (HiteCare / Hitec /
+hitecmed.com → MedBreath / medbreath.co) has changed.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router, Turbopack)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start    # serves the built site (default port 3000)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Lint:
 
-## Learn More
+```bash
+npm run lint
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/                          routes (App Router)
+    page.tsx                    home
+    products/                   /products, /products/[category], /products/[category]/[product]
+    news/                       /news, /news/company, /news/industry, /news/[slug]
+    about/                      /about
+    contact/                    /contact
+    honor-certificates/         /honor-certificates
+    sitemap.ts                  /sitemap.xml
+    robots.ts                   /robots.txt
+  components/                   shared UI (Header, Footer, ProductCard, NewsCard, ...)
+  data/
+    site.ts                     brand, contact and navigation config
+    products.json               33 products (5 categories)
+    categories.json             5 categories
+    news.json                   44 news articles
+    image-map.json              original remote URL -> local image path
+  lib/
+    data.ts                     typed data loaders and helpers
+    images.ts                   localImage() and rewriteContent()
+public/images/                  all image assets downloaded locally
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Rebranding
 
-## Deploy on Vercel
+Content and remote URLs were rewritten at build time:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `Hitecare` / `Hitec` / `hitecmed.com` → `MedBreath` / `medbreath.co`
+- Contact email → `info@medbreath.co`
+- All remote image URLs are mapped to local files in `public/images` via `image-map.json`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To change brand details, edit `src/data/site.ts`.
+
+## Legacy URL redirects
+
+`next.config.ts` permanently redirects the original Hitec URLs to the new routes, for example:
+
+| Original | New |
+| --- | --- |
+| `/product` | `/products` |
+| `/Respiratory` | `/products/respiratory` |
+| `/product-item-2.html` | `/products/respiratory/oxygen-mask` |
+| `/article.html` | `/news` |
+| `/Company-news` | `/news/company` |
+| `/p-about.html` | `/about` |
+| `/p-contact.html` | `/contact` |
+| `/Honor-certificates.html` | `/honor-certificates` |
+| `/<news-slug>.html` | `/news/<news-slug>` |
+
+## Deploying to medbreath.co
+
+1. Push this repository to your Git host.
+2. Import the project into your hosting provider (Vercel is a good fit for Next.js).
+3. Set the production domain to `medbreath.co` and `www.medbreath.co`.
+4. Point your DNS records at the host as instructed by the provider.
+5. Build command: `npm run build`. Start command: `npm run start` (or use the
+   provider's managed Next.js runtime).
+6. `site.url` in `src/data/site.ts` is already `https://www.medbreath.co`; update it if you
+   prefer the apex domain for canonical URLs and the sitemap.

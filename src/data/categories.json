@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Respiratory",
+    "slug": "respiratory",
+    "count": 12,
+    "image": "/images/1fffa1e0192d.jpg"
+  },
+  {
+    "name": "Urology",
+    "slug": "urology",
+    "count": 7,
+    "image": "/images/cc734495ed73.jpg"
+  },
+  {
+    "name": "Anesthesiology",
+    "slug": "anesthesiology",
+    "count": 6,
+    "image": "/images/97366e2496e8.png"
+  },
+  {
+    "name": "PVC Catheters",
+    "slug": "pvc-catheters",
+    "count": 6,
+    "image": "/images/04d754925d1c.png"
+  },
+  {
+    "name": "Infusion system",
+    "slug": "infusion-system",
+    "count": 2,
+    "image": "/images/165c7b43717b.jpg"
+  }
+]
