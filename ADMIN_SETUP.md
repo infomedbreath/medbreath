@@ -28,10 +28,9 @@ node -e "const c=require('crypto');const i=210000,s=c.randomBytes(16).toString('
 Copy the output of the second command, then set these in `.env.local` for local
 development, or as encrypted environment variables in Cloudflare:
 
-```bash
-ADMIN_SESSION_SECRET=<the 32+ character string>
-ADMIN_USERS=you@gmail.com:pbkdf2.210000.<salt>.<hash>
-```
+bash
+ADMIN_SESSION_SECRET=<ye3iWQJefQMQkxetpQtutbodvsr6K85Xyw4_NyIdESs>
+ADMIN_USERS=info.medbreath@gmail.com:pbkdf2.210000.IUTACCYGVMt8vYpSnC9L-g.A9ox_uSVixQR9Egb_2dpKigCujoMIFFrM2KJdFIGm34
 
 > **Do not use `$` as a separator.** Next.js truncates `.env` values at `$`, so
 > `pbkdf2$210000$...` silently becomes `pbkdf2` and every login fails. The format
