@@ -5,7 +5,6 @@ import SectionHeading from "@/components/SectionHeading";
 import ProductCard from "@/components/ProductCard";
 import NewsCard from "@/components/NewsCard";
 import { getProducts, getNews, getCategories } from "@/lib/content-store";
-import { site } from "@/data/site";
 
 // The catalogue is editable from the admin panel, so this page is rendered per
 // request rather than baked at build time.
@@ -139,25 +138,21 @@ export default async function HomePage() {
         <div>
           <SectionHeading
             align="left"
-            title="About MedBreath Medical"
-            subtitle="Established in 2019 · Jiangsu Province, China"
+            title="About Medbreath"
+            subtitle="Lahore, Punjab, Pakistan"
           />
           <div className="space-y-4 text-[15px] leading-relaxed text-body">
             <p>
-              {site.legalName} is a company specializing in the production and
-              sales of disposable medical products, dedicated to providing
-              hospital and home care solutions.
+              Medbreath (Private) Limited is a Lahore-based healthcare trading
+              company dedicated to the supply, distribution, import and
+              marketing of medical devices, hospital equipment and medical
+              disposable products.
             </p>
             <p>
-              Our main product range includes urology, anesthesia, respiratory
-              and other related consumables such as endotracheal tubes,
-              laryngeal masks, oxygen masks, suction connection tubes, urinary
-              catheters and stomach tubes.
-            </p>
-            <p>
-              We have engineers with rich experience in rubber, plastic and
-              mechanism as technical support, together with a group of trained
-              and skilled employees.
+              We aim to support hospitals, clinics and healthcare professionals
+              with reliable products, professional service and responsible
+              sourcing. Product availability is subject to manufacturer
+              agreements and applicable regulatory requirements.
             </p>
           </div>
           <Link
