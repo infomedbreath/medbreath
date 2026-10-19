@@ -170,27 +170,29 @@ export default async function HomePage() {
       </section>
 
       {/* News */}
-      <section className="bg-soft py-20">
-        <div className="container-x">
-          <SectionHeading
-            title="News"
-            subtitle="Latest company and industry updates"
-          />
-          <div className="grid gap-6 md:grid-cols-3">
-            {latestNews.map((n) => (
-              <NewsCard key={n.slug} item={n} />
-            ))}
+      {latestNews.length > 0 && (
+        <section className="bg-soft py-20">
+          <div className="container-x">
+            <SectionHeading
+              title="News"
+              subtitle="Latest company and industry updates"
+            />
+            <div className="grid gap-6 md:grid-cols-3">
+              {latestNews.map((n) => (
+                <NewsCard key={n.slug} item={n} />
+              ))}
+            </div>
+            <div className="mt-12 text-center">
+              <Link
+                href="/news"
+                className="inline-block rounded-full border border-brand-ink px-8 py-3 text-sm font-medium text-brand-ink transition-colors hover:bg-brand hover:text-brand-deep"
+              >
+                All news
+              </Link>
+            </div>
           </div>
-          <div className="mt-12 text-center">
-            <Link
-              href="/news"
-              className="inline-block rounded-full border border-brand-ink px-8 py-3 text-sm font-medium text-brand-ink transition-colors hover:bg-brand hover:text-brand-deep"
-            >
-              All news
-            </Link>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

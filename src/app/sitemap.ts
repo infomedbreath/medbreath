@@ -23,7 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/news/industry`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${base}/honor-certificates`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   ];
 
   const categoryPages: MetadataRoute.Sitemap = categories.map((c) => ({

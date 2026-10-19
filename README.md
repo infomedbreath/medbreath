@@ -41,7 +41,6 @@ src/
     news/                       /news, /news/company, /news/industry, /news/[slug]
     about/                      /about
     contact/                    /contact
-    honor-certificates/         /honor-certificates
     sitemap.ts                  /sitemap.xml
     robots.ts                   /robots.txt
   components/                   shared UI (Header, Footer, ProductCard, NewsCard, ...)
@@ -49,7 +48,8 @@ src/
     site.ts                     brand, contact and navigation config
     products.json               33 products (5 categories)
     categories.json             5 categories
-    news.json                   44 news articles
+    news.json                   empty; news can be added in the admin
+    certificates.json           empty; certificates can be managed in the admin
     image-map.json              original remote URL -> local image path
   lib/
     data.ts                     typed data loaders and helpers
@@ -80,8 +80,7 @@ To change brand details, edit `src/data/site.ts`.
 | `/Company-news` | `/news/company` |
 | `/p-about.html` | `/about` |
 | `/p-contact.html` | `/contact` |
-| `/Honor-certificates.html` | `/honor-certificates` |
-| `/<news-slug>.html` | `/news/<news-slug>` |
+| `/Honor-certificates.html` | `/about` |
 
 ## Deploying to medbreath.co
 

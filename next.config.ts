@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 import products from "./src/data/products.json";
-import news from "./src/data/news.json";
 
 const categoryAliases: { source: string; destination: string }[] = [
   { source: "/Respiratory", destination: "/products/respiratory" },
@@ -22,7 +21,7 @@ const staticRedirects = [
   { source: "/p-contact.html", destination: "/contact", permanent: true },
   {
     source: "/Honor-certificates.html",
-    destination: "/honor-certificates",
+    destination: "/about",
     permanent: true,
   },
   ...categoryAliases.map((c) => ({ ...c, permanent: true })),
@@ -34,15 +33,9 @@ const productRedirects = products.map((p) => ({
   permanent: true,
 }));
 
-const newsRedirects = news.map((n) => ({
-  source: n.originalHref,
-  destination: `/news/${n.slug}`,
-  permanent: true,
-}));
-
 const nextConfig: NextConfig = {
   async redirects() {
-    return [...staticRedirects, ...productRedirects, ...newsRedirects];
+    return [...staticRedirects, ...productRedirects];
   },
 };
 

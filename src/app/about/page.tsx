@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import Breadcrumbs, { PageBanner } from "@/components/Breadcrumbs";
 import SectionHeading from "@/components/SectionHeading";
@@ -149,12 +148,6 @@ export default function AboutPage() {
             continuously invest in quality management to meet the requirements
             of hospitals and distributors around the world.
           </p>
-          <Link
-            href="/honor-certificates"
-            className="mt-8 inline-block rounded-full bg-brand px-8 py-3 text-sm font-medium text-brand-deep transition-colors hover:bg-brand-dark"
-          >
-            View certificates
-          </Link>
         </div>
       </section>
     </>
